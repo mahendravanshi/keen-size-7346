@@ -1,4 +1,5 @@
 package com.masai;
+
 import java.sql.Time;
 
 public class Bus {
@@ -94,7 +95,7 @@ public class Bus {
 	
 	@Override
 	public String toString() {
-		return "Bus [bid=" + bid + ", name=" + name + ", type=" + type + ", source=" + source
-				+ ", dest=" + dest + ", arrival=" + arrival + ", dept=" + dept + ", seat=" + seat + "]";
+		return "Bus [bid=" + bid + ", name=" + name + ",type=" + type + ", source=" + source
+				+ ",dest=" + dest + ",arrival=" + arrival + ", dept=" + dept + ", seat=" + seat + "]";
 	}
 }
