@@ -1,5 +1,10 @@
 package com.masai;
+<<<<<<< HEAD
 import java.io.Serializable;
+=======
+
+import java.sql.Time;
+>>>>>>> main
 
 import java.time.LocalDateTime;
 import java.util.Objects;
@@ -120,7 +125,7 @@ public class Bus implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Bus [bid=" + bid + ", name=" + name + ", type=" + type + ", source=" + source
-				+ ", dest=" + dest + ", arrival=" + arrival + ", dept=" + dept + ", seat=" + seat + "]";
+		return "Bus [bid=" + bid + ", name=" + name + ",type=" + type + ", source=" + source
+				+ ",dest=" + dest + ",arrival=" + arrival + ", dept=" + dept + ", seat=" + seat + "]";
 	}
 }
