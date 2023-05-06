@@ -1,10 +1,10 @@
 package com.masai;
-<<<<<<< HEAD
-import java.io.Serializable;
-=======
 
-import java.sql.Time;
->>>>>>> main
+import java.io.Serializable;
+
+
+
+
 
 import java.time.LocalDateTime;
 import java.util.Objects;
