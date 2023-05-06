@@ -1,21 +1,24 @@
 package com.masai;
-import java.sql.Time;
+import java.io.Serializable;
 
-public class Bus {
+import java.time.LocalDateTime;
+import java.util.Objects;
+
+public class Bus implements Serializable{
 	private int bid;
 	private String name;
 	private String type;
 	private String source;
 	private String dest;
-	private Time arrival;
-	private Time dept;
+	private LocalDateTime arrival;
+	private LocalDateTime dept;
 	private int seat;
 	
 	public Bus() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Bus(int bid, String name, String type, String source, String dest, Time arrival, Time dept,
+	public Bus(int bid, String name, String type, String source, String dest, LocalDateTime arrival, LocalDateTime dept,
 			int seat) {
 		super();
 		this.bid = bid;
@@ -68,19 +71,19 @@ public class Bus {
 		this.dest = dest;
 	}
 
-	public Time getArrival() {
+	public LocalDateTime getArrival() {
 		return arrival;
 	}
 
-	public void setArrival(Time arrival) {
+	public void setArrival(LocalDateTime arrival) {
 		this.arrival = arrival;
 	}
 
-	public Time getDept() {
+	public LocalDateTime getDept() {
 		return dept;
 	}
 
-	public void setDept(Time dept) {
+	public void setDept(LocalDateTime dept) {
 		this.dept = dept;
 	}
 
@@ -92,6 +95,29 @@ public class Bus {
 		this.seat = seat;
 	}
 	
+	
+	
+	
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(arrival, dept, dest, name, seat, source, type);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Bus other = (Bus) obj;
+		return Objects.equals(arrival, other.arrival) && Objects.equals(dept, other.dept)
+				&& Objects.equals(dest, other.dest) && Objects.equals(name, other.name) && seat == other.seat
+				&& Objects.equals(source, other.source) && Objects.equals(type, other.type);
+	}
+
 	@Override
 	public String toString() {
 		return "Bus [bid=" + bid + ", name=" + name + ", type=" + type + ", source=" + source
