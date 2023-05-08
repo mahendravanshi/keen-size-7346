@@ -1,49 +1,71 @@
 package com.masai;
 
-public class Admin {
-	private int userid;
-	private String email;
-	private String password;
-	
-	public Admin() {
-		// TODO Auto-generated constructor stub
-	}
+import java.io.*;
+import java.util.Scanner;
 
-	public Admin(int userid, String email, String password) {
-		super();
-		this.userid = userid;
-		this.email = email;
-		this.password = password;
-	}
+class Admin implements Serializable {
+    private transient ReservationSystem reservationSystem;
+    private transient Scanner scanner;
 
-	public int getUserid() {
-		return userid;
-	}
+    public Admin(ReservationSystem reservationSystem) {
+        this.reservationSystem = reservationSystem;
+        this.scanner = new Scanner(System.in);
+    }
 
-	public void setUserid(int userid) {
-		this.userid = userid;
-	}
+    public void menu() {
+        int choice;
+        do {
+            System.out.println("\nAdmin Menu");
+            System.out.println("1. Add Bus");
+            System.out.println("2. View Bus List");
+            System.out.println("3. Exit");
+            System.out.print("Enter your choice: ");
+            choice = scanner.nextInt();
+            scanner.nextLine(); // Consume the newline character
 
-	public String getEmail() {
-		return email;
-	}
+            switch (choice) {
+                case 1:
+                    addBus();
+                    break;
+                case 2:
+                    viewBusList();
+                    break;
+                case 3:
+                    System.out.println("Exiting Admin Menu...");
+                    break;
+                default:
+                    System.out.println("Invalid choice. Please try again.");
+                    break;
+            }
+        } while (choice != 3);
+    }
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
+    private void addBus() {
+        System.out.print("Enter bus number: ");
+        String busNumber = scanner.nextLine();
+        System.out.print("Enter total seats: ");
+        int totalSeats = scanner.nextInt();
+        scanner.nextLine(); // Consume the newline character
 
-	public String getPassword() {
-		return password;
-	}
+        Bus newBus = new Bus(busNumber, totalSeats);
+        reservationSystem.addBus(newBus);
+//        reservationSystem.displayBusList();
+        Main.saveReservationSystem(reservationSystem);
+        System.out.println("Bus " + busNumber + " with " + totalSeats + " seats added successfully!");
+    }
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
+    private void viewBusList() {
+        reservationSystem.displayBusList();
+    }
 
-	@Override
-	public String toString() {
-		return "Admin [userid=" + userid + ", email=" + email + ", password=" + password + "]";
-	}
-	
-	
+    // Serialization method
+    private void writeObject(ObjectOutputStream out) throws IOException {
+        out.defaultWriteObject();
+    }
+
+    // Deserialization method
+    private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
+        in.defaultReadObject();
+        scanner = new Scanner(System.in); // Re-initialize transient field
+    }
 }
